@@ -5,9 +5,8 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
         "airbnb",
-        "prettier/@typescript-eslint",
+        "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
@@ -20,38 +19,43 @@
     },
     "plugins": [
         "react",
-        "react-hooks",
         "@typescript-eslint",
+        "react-hooks",
         "prettier"
     ],
     "rules": {
-      "react-hooks/rules-of-hooks": "error",
-      "react/jsx-one-expression-per-line": "off",
-      "react-hooks/exhaustive-deps": "warn",
-      "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-      "import/prefer-default-export": "off",
-      "camelcase": "off",
-      "@typescript-eslint/ban-types": "off",
-      "@typescript-eslint/explicit-function-return-type": [
-        "error",
-        {
-          "allowExpressions": true
-        }
-      ],
-      "import/extensions": [
-        "error",
-        "ignorePackages",
-        {
-          "ts": "never",
-          "tsx": "never"
-        }
-      ],
-      "prettier/prettier": "error",
-      "no-use-before-define": "off"
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".tsx"
+                ]
+            }
+        ],
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": [
+            "error"
+        ],
+        "react/react-in-jsx-scope": "off",
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "ts": "never",
+                "tsx": "never"
+            }
+        ],
+        "prettier/prettier": "off",
+        "react/jsx-props-no-spreading": "off",
+        "import/prefer-default-export": "off",
+        "react/prop-types": "off",
+        "@typescript-eslint/ban-types": "off"
     },
     "settings": {
-      "import/resolver": {
-        "typescript": {}
-      }
+        "import/resolver": {
+            "typescript": {}
+        }
     }
 }

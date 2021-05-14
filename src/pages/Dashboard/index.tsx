@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Dashboard: React.FC = () => {
+import SideBar from '../../components/Sidebar';
 
+const Dashboard: React.FC = () => {
   return (
     <>
-      <h1>Hello Abare</h1>
+      <SideBar />
     </>
   );
 };
