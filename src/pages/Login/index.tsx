@@ -41,7 +41,7 @@ const Login: React.FC = () => {
         });
       }
     },
-    [signIn, email, password, history],
+    [signIn, email, password, history, addToast],
   );
 
   return (
