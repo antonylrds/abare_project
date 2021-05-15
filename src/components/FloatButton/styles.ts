@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.button`
-    position: absolute;
+    position: fixed;
     bottom: 50px;
     right: 50px;
     border-radius: 20px;

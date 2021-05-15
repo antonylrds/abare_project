@@ -1,16 +1,13 @@
-import React, { useCallback, useState, FormEvent } from 'react';
+import React, { useCallback, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiSearch, FiLogOut, FiUsers } from 'react-icons/fi';
+import { FiUserPlus, FiLogOut, FiUsers } from 'react-icons/fi';
 import { DataGrid } from '@material-ui/data-grid';
-import FormInput from '../../components/FormInput';
 
 import { useToast } from '../../hooks/toast';
 
 import { Container, Content, Header, IconButton } from './styles';
-import FloatButton from '../../components/FloatButton';
 
 const User: React.FC = () => {
-  const [title, setTitle] = useState('');
 
   const { addToast } = useToast();
 
@@ -84,19 +81,10 @@ const User: React.FC = () => {
         <h1><FiUsers size={40} /> Gerenciamento de usuários</h1>
         <div className="separator" />
         <form onSubmit={handleSubmit}>
-          <FormInput
-            labelName="Nome"
-            name="name"
-            id="name-input"
-            value={title}
-            placeholder="Buscar por nome de usuário"
-            onChange={e => setTitle(e.target.value)}
-            autoComplete="off"
-          />
           <div className="right-aligned">
             <button type="submit">
-              <FiSearch size={20} />
-              Buscar
+              <FiUserPlus size={20} />
+              Adicioanr Usuário
             </button>
           </div>
         </form>
@@ -104,7 +92,6 @@ const User: React.FC = () => {
           <DataGrid rows={rows} columns={columns} pageSize={5} />
         </div>
       </Content>
-      <FloatButton />
     </Container>
   );
 };
