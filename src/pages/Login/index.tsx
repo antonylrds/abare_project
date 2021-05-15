@@ -2,7 +2,6 @@ import React, { FormEvent, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FiLogIn, FiLock, FiUser } from 'react-icons/fi';
 
-import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 
 import LogoImg from '../../assets/logo.png';
@@ -14,7 +13,6 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { signIn } = useAuth();
   const { addToast } = useToast();
 
   const history = useHistory();
@@ -24,7 +22,7 @@ const Login: React.FC = () => {
       event.preventDefault();
 
       try {
-        await signIn({ email, password });
+        // await signIn({ email, password });
 
         addToast({
           type: 'success',
@@ -41,7 +39,7 @@ const Login: React.FC = () => {
         });
       }
     },
-    [signIn, email, password, history, addToast],
+    [history, addToast],
   );
 
   return (

@@ -2,15 +2,17 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div`
-  padding-top: 50px;
-  max-width: 300px;
+  padding-top: 30px;
+  max-width: 350px;
+  width: 30%;
   background: #0a0a0a;
   height: 100%;
 
   color: #ffffff;
 
   img {
-    width: 250px;
+    max-width: 250px;
+    width: 100%;
     display: block;
     margin-left: auto;
     margin-right: auto;
