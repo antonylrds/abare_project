@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// eslint-disable-next-line no-console
 console.log(process.env.LIVE);
 
 const api = axios.create({
