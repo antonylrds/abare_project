@@ -1,22 +1,47 @@
-import React, { useCallback, FormEvent } from 'react';
-import { useHistory } from 'react-router-dom';
-import { FiUserPlus, FiLogOut, FiUsers } from 'react-icons/fi';
+import React, { useCallback, useEffect, useState } from 'react';
+
+import { FiUserPlus, FiUsers, FiAlignJustify } from 'react-icons/fi';
 import { DataGrid } from '@material-ui/data-grid';
 
-import { useToast } from '../../hooks/toast';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import api from '../../services/api';
 
-import { Container, Content, Header, IconButton } from './styles';
+import { useToast } from '../../hooks/toast';
+import { useSidebar } from '../../hooks/sidebar';
+
+import { Container, Content, Header } from './styles';
+
+interface FuncionarioInterface {
+  nome: string;
+  funcinario: string;
+  departamento: string;
+  funcao: string;
+}
 
 const User: React.FC = () => {
 
   const { addToast } = useToast();
+  const { toggleSidebar } = useSidebar();
 
-  const history = useHistory();
+  const [funcionarios, setFuncionarios] = useState<FuncionarioInterface[]>([] as FuncionarioInterface[]);
+
+  useEffect(() => {
+    try {
+      api.get<FuncionarioInterface[]>('/employees').then((response) => {
+        setFuncionarios(response.data);
+      })
+    } catch (e) {
+      addToast({
+        title: e.message,
+        type: 'error'
+      })
+    }
+  }, [addToast])
+
 
   const handleSubmit = useCallback(
-    (event: FormEvent<HTMLFormElement>): void => {
-      event.preventDefault();
-
+    (): void => {
       try {
         addToast({
           title: 'Eba',
@@ -36,61 +61,30 @@ const User: React.FC = () => {
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130 },
-    { field: 'lastName', headerName: 'Last name', width: 130 },
+    { field: 'nome', headerName: 'Nome', width: 500 },
+    { field: 'departamento', headerName: 'Departamento', width: 150 },
     {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      width: 90,
+      field: 'funcao',
+      headerName: 'Função',
+      width: 150,
     },
-    {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (params) =>
-        `${params.getValue('firstName') || ''} ${params.getValue('lastName') || ''}`,
-    },
-  ];
-
-  const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ];
 
   return (
     <Container>
-      <Header>
-        <div>
-          <IconButton onClick={() => history.push('/login')} type="button">
-            <FiLogOut size={20} />
-            Sair
-          </IconButton>
-        </div>
-      </Header>
+      <div>
+        <Header>
+          <IconButton onClick={toggleSidebar} aria-label="expand"><FiAlignJustify size={30} /></IconButton>
+        </Header>
+      </div>
       <Content>
-        <h1><FiUsers size={40} /> Gerenciamento de usuários</h1>
-        <div className="separator" />
-        <form onSubmit={handleSubmit}>
-          <div className="right-aligned">
-            <button type="submit">
-              <FiUserPlus size={20} />
-              Adicioanr Usuário
-            </button>
-          </div>
-        </form>
-        <div className="table">
-          <DataGrid rows={rows} columns={columns} pageSize={5} />
-        </div>
+        <h1>
+          <FiUsers size={40} />Gerenciamento de usuários
+        </h1>
+        {false && <Button variant="contained" color="primary" startIcon={<FiUserPlus size={20} />} onClick={handleSubmit}>Adicionar novo usuário</Button>}
+        {funcionarios && <div className="table">
+          <DataGrid rows={funcionarios} columns={columns} pageSize={10} />
+        </div>}
       </Content>
     </Container>
   );

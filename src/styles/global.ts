@@ -27,4 +27,10 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  @media (max-width: 425px) {
+    body, input, button {
+    font: 11px Roboto, sans-serif;
+  }
+  }
 `;

@@ -1,42 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiUsers, FiFileText, FiChevronDown } from 'react-icons/fi';
-import { Container } from './styles';
+import { FiUsers, FiFileText, FiLogOut } from 'react-icons/fi';
 
-import Logo from '../../assets/logo.png';
+import { ProSidebar, SidebarHeader, SidebarContent, SidebarFooter, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import 'react-pro-sidebar/dist/css/styles.css';
+
+import { useSidebar } from '../../hooks/sidebar';
+
+import { Logo } from './style';
+
+import logoImg from '../../assets/logo.png';
+
 
 const SideBar: React.FC = () => {
-  return (
-    <Container>
-      <img src={Logo} alt="Logtipo" />
 
-      <div>
-        <ul>
-          <li>
-            <Link to="/users">
-              <div>
-                <FiUsers size={20} />
-             Usuários
-            </div>
-              <div>
-                <FiChevronDown size={20} />
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/users">
-              <div>
-                <FiFileText size={20} />
-             Relatórios
-            </div>
-              <div>
-                <FiChevronDown size={20} />
-              </div>
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </Container>
+  const { collapsed } = useSidebar();
+  return (
+    <ProSidebar collapsed={collapsed}>
+      <SidebarHeader>
+        <Logo src={logoImg} alt="Logotipo" />
+      </SidebarHeader>
+      <SidebarContent>
+        <Menu iconShape="square" popperArrow>
+          <MenuItem icon={<FiUsers />}>
+            Usuários
+          </MenuItem>
+          <SubMenu title="Relatórios" icon={<FiFileText />}>
+            <MenuItem>Comissão de Funcionários</MenuItem>
+            <MenuItem>Faturamento</MenuItem>
+          </SubMenu>
+        </Menu>
+      </SidebarContent>
+      <SidebarFooter>
+        <Menu iconShape="square" popperArrow>
+          <MenuItem icon={<FiLogOut />}>
+            Sair
+          <Link to="/login" />
+          </MenuItem>
+        </Menu>
+      </SidebarFooter>
+    </ProSidebar>
   )
 };
 

@@ -3,17 +3,17 @@ import { shade } from 'polished';
 
 export const Container = styled.div`
   flex: 1;
+  height: 100%;
 `;
 
 export const Content = styled.div`
-  padding: 20px 60px;
-  display: block;
 
-  .separator {
-    width: 100%;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.25);
-    margin-bottom: 10px;
+  padding: 0px 20px;
+  height: 70%;
+
+  h1 {
+    border-bottom: 1px solid #000;
+    margin-bottom: 5px;
   }
 
   form {
@@ -50,54 +50,21 @@ export const Content = styled.div`
   }
 
   div.table {
-    height:400px;
+    height: 100%;
+    font-size: 8px;
+  }
+
+  @media (max-width: 768px) {
+    max-height: 70%;
+
   }
 `;
 
 export const Header = styled.header`
-  background: #0a0a0a;
-  width: 100%;
-  height: 128px;
   display: flex;
-  align-items: center;
-  padding: 50px;
+  flex-direction: column;
+  align-items: flex-start;
 
-  img {
-    max-width: 200px;
-    max-height: 100px;
-  }
 
-  div {
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-  }
-
-  button {
-    border-radius: 15px;
-    height: 50px;
-    color: #fff;
-    background: #E8383C;
-    border: 0;
-    padding: 10px;
-    transition: background-color 0.2s;
-
-    &:hover {
-      background: ${shade(0.2, '#E8383C')};
-    }
-
-    & + button {
-      margin-left: 10px;
-    }
-  }
-`;
-
-export const IconButton = styled.button`
-  display:flex;
-  align-items: center;
-  justify-content: center;
-
-  svg {
-    margin-right: 5px;
-  }
+  margin-top: 10px;
 `;

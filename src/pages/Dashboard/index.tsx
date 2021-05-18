@@ -6,11 +6,14 @@ import SideBar from '../../components/Sidebar';
 import User from '../User';
 
 const Dashboard: React.FC = () => {
+
   return (
-    <Container>
-      <SideBar />
-      <User />
-    </Container>
+    <>
+      <Container>
+        <SideBar />
+        <User />
+      </Container>
+    </>
   );
 };
 
