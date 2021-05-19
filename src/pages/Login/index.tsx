@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { FiLogIn, FiLock, FiUser } from 'react-icons/fi';
 
 import { useToast } from '../../hooks/toast';
+import { useAuth } from '../../hooks/auth';
 
 import LogoImg from '../../assets/logo.png';
 
@@ -14,6 +15,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
 
   const { addToast } = useToast();
+  const { signIn } = useAuth();
 
   const history = useHistory();
 
@@ -22,7 +24,7 @@ const Login: React.FC = () => {
       event.preventDefault();
 
       try {
-        // await signIn({ email, password });
+        await signIn({ email, password });
 
         addToast({
           type: 'success',
@@ -39,7 +41,7 @@ const Login: React.FC = () => {
         });
       }
     },
-    [history, addToast],
+    [history, addToast, signIn, email, password],
   );
 
   return (
@@ -52,8 +54,8 @@ const Login: React.FC = () => {
             value={email}
             onChange={e => setEmail(e.target.value)}
             name="email"
-            type="email"
-            placeholder="E-mail"
+            type="text"
+            placeholder="Usuário"
             icon={FiUser}
           />
           <Input
