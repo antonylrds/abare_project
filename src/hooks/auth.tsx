@@ -30,8 +30,8 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 const AuthProvider: React.FC = ({ children }) => {
 
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@TCC:token');
-    const user = localStorage.getItem('@TCC:user');
+    const token = localStorage.getItem('@Abare:token');
+    const user = localStorage.getItem('@Abare:user');
 
     if (token && user) {
       return { token, user: JSON.parse(user) };
@@ -48,8 +48,8 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const { token, user } = response.data;
 
-    localStorage.setItem('@TCC:token', `Bearer ${token}`);
-    localStorage.setItem('@TCC:user', JSON.stringify(user));
+    localStorage.setItem('@Abare:token', `Bearer ${token}`);
+    localStorage.setItem('@Abare:user', JSON.stringify(user));
 
     setData({ token, user });
   }, []);
@@ -64,8 +64,8 @@ const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@GoBarber:token');
-    localStorage.removeItem('@GoBarber:user');
+    localStorage.removeItem('@Abare:token');
+    localStorage.removeItem('@Abare:user');
 
     setData({} as AuthState);
 
