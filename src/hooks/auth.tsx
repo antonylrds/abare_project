@@ -28,6 +28,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
+
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@TCC:token');
     const user = localStorage.getItem('@TCC:user');
@@ -67,6 +68,7 @@ const AuthProvider: React.FC = ({ children }) => {
     localStorage.removeItem('@GoBarber:user');
 
     setData({} as AuthState);
+
   }, []);
 
   return (

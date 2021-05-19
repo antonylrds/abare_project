@@ -1,5 +1,5 @@
 import React, { FormEvent, useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { FiLogIn, FiLock, FiUser } from 'react-icons/fi';
 
 import { useToast } from '../../hooks/toast';
@@ -15,7 +15,9 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
 
   const { addToast } = useToast();
-  const { signIn } = useAuth();
+  const { signIn, user } = useAuth();
+
+  console.log(user);
 
   const history = useHistory();
 
@@ -44,7 +46,7 @@ const Login: React.FC = () => {
     [history, addToast, signIn, email, password],
   );
 
-  return (
+  return user ? (<Redirect to="/dashboard" />) : (
     <>
       <Container>
         <img src={LogoImg} alt="logomarca" width={450} />
