@@ -11,7 +11,6 @@ import User from '../User';
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
 
-  console.log(user);
   return user ? (
     <>
       <Container>

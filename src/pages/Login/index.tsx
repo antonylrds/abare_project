@@ -17,8 +17,6 @@ const Login: React.FC = () => {
   const { addToast } = useToast();
   const { signIn, user } = useAuth();
 
-  console.log(user);
-
   const history = useHistory();
 
   const handleSubmit = useCallback(
