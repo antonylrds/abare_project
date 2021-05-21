@@ -6,7 +6,7 @@ import { useAuth } from '../../hooks/auth';
 import { Container } from './styles'
 
 import SideBar from '../../components/Sidebar';
-import User from '../User';
+import Caixa from '../Caixa';
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
@@ -15,7 +15,7 @@ const Dashboard: React.FC = () => {
     <>
       <Container>
         <SideBar />
-        <User />
+        <Caixa />
       </Container>
     </>
   ) : (<Redirect to="/login" />);

@@ -7,7 +7,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import { useSidebar } from '../../hooks/sidebar';
 import { useAuth } from '../../hooks/auth';
 
-import { Logo } from './style';
+import { Logo, Container } from './style';
 
 import logoImg from '../../assets/logo.png';
 
@@ -17,29 +17,31 @@ const SideBar: React.FC = () => {
   const { collapsed } = useSidebar();
   const { signOut } = useAuth();
   return (
-    <ProSidebar collapsed={collapsed}>
-      <SidebarHeader>
-        <Logo src={logoImg} alt="Logotipo" />
-      </SidebarHeader>
-      <SidebarContent>
-        <Menu iconShape="square" popperArrow>
-          <MenuItem icon={<FiUsers />}>
-            Usuários
+    <Container>
+      <ProSidebar collapsed={collapsed}>
+        <SidebarHeader>
+          <Logo src={logoImg} alt="Logotipo" />
+        </SidebarHeader>
+        <SidebarContent>
+          <Menu iconShape="square" popperArrow>
+            <MenuItem icon={<FiUsers />}>
+              Usuários
           </MenuItem>
-          <SubMenu title="Relatórios" icon={<FiFileText />}>
-            <MenuItem>Comissão de Funcionários</MenuItem>
-            <MenuItem>Faturamento</MenuItem>
-          </SubMenu>
-        </Menu>
-      </SidebarContent>
-      <SidebarFooter>
-        <Menu iconShape="square" popperArrow>
-          <MenuItem icon={<FiLogOut />} onClick={signOut}>
-            Sair
+            <SubMenu title="Relatórios" icon={<FiFileText />}>
+              <MenuItem>Comissão de Funcionários</MenuItem>
+              <MenuItem>Faturamento</MenuItem>
+            </SubMenu>
+          </Menu>
+        </SidebarContent>
+        <SidebarFooter>
+          <Menu iconShape="square" popperArrow>
+            <MenuItem icon={<FiLogOut />} onClick={signOut}>
+              Sair
           </MenuItem>
-        </Menu>
-      </SidebarFooter>
-    </ProSidebar>
+          </Menu>
+        </SidebarFooter>
+      </ProSidebar>
+    </Container>
   )
 };
 
