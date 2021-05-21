@@ -93,9 +93,10 @@ const Caixa: React.FC = () => {
   const handleDateChange = (date: Date | null, final = false) => {
     if (final) {
       setSelectedDateFinal(date);
+    } else {
+      setSelectedDate(date);
     }
 
-    setSelectedDate(date);
   };
 
 
